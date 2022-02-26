@@ -1,13 +1,12 @@
 package com.jabre.cooking.controllers;
 
-import com.jabre.cooking.domain.Category;
-import com.jabre.cooking.domain.UnitOfMeasure;
 import com.jabre.cooking.repositories.CategoryRepository;
+import com.jabre.cooking.repositories.RecipeRepository;
 import com.jabre.cooking.repositories.UnitOfMeasureRepository;
+import com.jabre.cooking.services.RecipeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Optional;
 
 /**
  * Author : Jabre
@@ -16,20 +15,16 @@ import java.util.Optional;
 @Controller
 public class IndexController {
 
-    private final CategoryRepository categoryRepository;
-    private final UnitOfMeasureRepository unitOfMeasureRepository;
+    private final RecipeService recipeService;
 
-    public IndexController(CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
-        this.categoryRepository = categoryRepository;
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
+    public IndexController( RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
     @RequestMapping({"", "/", "index"})
-    public String getIndexPage() {
+    public String getIndexPage(Model model) {
 
-        Optional<Category> categoryOptional = categoryRepository.findByDescription("American");
-        Optional<UnitOfMeasure> optionalUnitOfMeasure = unitOfMeasureRepository.findByDescription("Teaspoon");
-
+        model.addAttribute("recipes", recipeService.getRecipes());
         return "index";
     }
 

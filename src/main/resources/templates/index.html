@@ -1,10 +1,22 @@
 <!DOCTYPE html >
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Jabre Cooking Home</title>
 </head>
 <body>
-<h1>Jabre Cooking Home</h1>
+<h1>Jabre Cooking Recipes</h1>
+
+<table>
+    <thead>
+    <th>ID</th>
+    <th>Description</th>
+    </thead>
+    <tr th:each="recipe : ${recipes}">
+        <td th:text="${recipe.id}">123</td>
+        <td th:text="${recipe.description}">Poz</td>
+    </tr>
+</table>
+
 </body>
 </html>
