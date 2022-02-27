@@ -1,5 +1,7 @@
 package com.jabre.cooking.domain;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +11,7 @@ import javax.persistence.Id;
  * Author : Jabre
  * Created : 2/23/2022, Wednesday
  **/
+@Data
 @Entity
 public class UnitOfMeasure {
 
@@ -17,19 +20,4 @@ public class UnitOfMeasure {
     private Long id;
     private String description;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }
